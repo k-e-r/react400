@@ -31,7 +31,7 @@ const App = () => {
     { path: '*', element: <NotFound /> },
     {
       path: '/messages',
-      element: <Messages />,
+      element: user ? <Messages /> : <NotFound />,
       children: [{ path: ':id', element: <Chats /> }],
     },
   ]);
