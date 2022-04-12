@@ -22,8 +22,18 @@ const App = () => {
 
   const routes = useRoutes([
     { path: '/', element: <Home /> },
-    { path: '/login', element: user ? <NotFound /> : <Login /> },
-    { path: '/register', element: user ? <NotFound /> : <Register /> },
+    {
+      path: '/login',
+      element: user ? <NotFound /> : <Login afterLogin={() => setUser(true)} />,
+    },
+    {
+      path: '/register',
+      element: user ? (
+        <NotFound />
+      ) : (
+        <Register afterRegister={() => setUser(true)} />
+      ),
+    },
     { path: '/dashboard', element: user ? <Dashboard /> : <NotFound /> },
     { path: '/post/:postId', element: user ? <PostPage /> : <NotFound /> },
     { path: '/comments', element: user ? <Comments /> : <NotFound /> },

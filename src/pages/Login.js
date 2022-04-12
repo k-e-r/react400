@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
-import Form from "../components/Form";
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import Form from '../components/Form';
 
-const Login = () => {
+const Login = ({ afterLogin }) => {
   const [toDashboard, setToDashboard] = useState(false);
 
-  if(toDashboard === true){
-      return <Navigate to="/dashboard" />
+  useEffect(() => {
+    if (toDashboard) afterLogin();
+  }, [toDashboard]);
+
+  if (toDashboard === true) {
+    return <Navigate to='/dashboard' />;
   }
 
   return (

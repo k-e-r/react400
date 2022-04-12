@@ -1,13 +1,17 @@
-import React, { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
-import Form from "../components/Form";
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Navigate } from 'react-router-dom';
+import Form from '../components/Form';
 
-const Register = () => {
+const Register = ({ afterRegister }) => {
   //   const navigate = useNavigate();
   const [toDashboard, setToDashboard] = useState(false);
 
-  if(toDashboard === true){
-      return <Navigate to="/dashboard" />
+  useEffect(() => {
+    if (toDashboard) afterRegister();
+  }, [toDashboard]);
+
+  if (toDashboard === true) {
+    return <Navigate to='/dashboard' />;
   }
 
   return (
